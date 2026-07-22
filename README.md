@@ -1,20 +1,24 @@
 # Semantic Code Search
 
-An AI-powered Semantic Code Search application that allows users to index GitHub repositories and ask natural language questions about the codebase.
+An AI-powered Semantic Code Search application that enables users to index GitHub repositories and ask natural language questions about the codebase using Retrieval-Augmented Generation (RAG).
+
+---
 
 ## Features
 
-- Semantic code search using Sentence Transformers
-- FastAPI backend
-- React frontend
-- ChromaDB vector database
-- Google Gemini integration
-- Repository indexing
-- Smart re-indexing using SHA-256 hash comparison
-- Query caching
-- Query logging
-- User feedback collection
-- Evaluation framework
+- 🔍 Semantic code search using Sentence Transformers
+- 🤖 AI-powered answers using Google Gemini
+- 📂 GitHub repository indexing
+- 🧠 ChromaDB vector database for semantic retrieval
+- ⚡ Query caching for improved performance
+- 📝 Query logging
+- 👍 User feedback collection
+- 📊 Automated evaluation framework
+- 🔄 Smart re-indexing using SHA-256 change detection
+- 🌐 REST API built with FastAPI
+- 💻 Interactive React frontend
+
+---
 
 ## Tech Stack
 
@@ -24,12 +28,14 @@ An AI-powered Semantic Code Search application that allows users to index GitHub
 - Axios
 
 ### Backend
-- FastAPI
 - Python
+- FastAPI
 - ChromaDB
 - Sentence Transformers
-- GitPython
 - Google Gemini API
+- GitPython
+
+---
 
 ## Project Structure
 
@@ -37,10 +43,23 @@ An AI-powered Semantic Code Search application that allows users to index GitHub
 semantic-code-search/
 │
 ├── backend/
+│   ├── app/
+│   ├── evaluation/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── ...
+│
 ├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── ...
+│
 ├── README.md
 └── .gitignore
 ```
+
+---
 
 ## Installation
 
@@ -60,10 +79,30 @@ npm install
 npm run dev
 ```
 
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/index` | Index a GitHub repository |
+| POST | `/query` | Ask questions about the indexed repository |
+| POST | `/feedback` | Save user feedback |
+
+---
+
 ## Future Improvements
 
-- Authentication
-- Docker
-- Cloud Deployment
-- Dashboard
-- Better evaluation metrics
+- User Authentication
+- Multi-language code support
+- True incremental vector updates
+- Multi-repository search
+- Enhanced evaluation metrics
+
+---
+
+## Author
+
+**Himani**
+
+B.Tech – Artificial Intelligence & Data Science
