@@ -1,0 +1,32 @@
+[
+    {
+        "question": "How does Flask handle routing?",
+        "expected": "routing",
+        "answer": "I could not find the answer in the indexed repository.",
+        "passed": false
+    },
+    {
+        "question": "What does url_for do?",
+        "expected": "url_for",
+        "answer": "In `__init__.py`, the function `url_for` is used within `redirect()`. It appears to take a string argument, such as `'index'`, `'register'`, or `'login'`, and likely generates a URL for that specified endpoint, which the `redirect()` function then uses to send the user to a different page.\n\nFor example:\n- In `__init__.py`, `register` function: `return redirect(url_for('index'))`\n- In `__init__.py`, `login` function: `return redirect(url_for('register'))`\n- In `__init__.py`, `logout` function: `return redirect(url_for('login'))`",
+        "passed": true
+    },
+    {
+        "question": "How are templates rendered?",
+        "expected": "template",
+        "answer": "Templates are rendered using the `render_template` function in `common.py`. This function retrieves the specified template by name from an environment and then calls its `render` method with the provided context.",
+        "passed": true
+    },
+    {
+        "question": "How are requests parsed?",
+        "expected": "request",
+        "answer": "I could not find the answer in the indexed repository.",
+        "passed": false
+    },
+    {
+        "question": "How are responses created?",
+        "expected": "response",
+        "answer": "Responses are created in `src/controllers/user_controller.py` within the `UserController.get_user_profile` function by returning a dictionary for successful profiles, or a dictionary and a status code (e.g., `{'message': 'User not found'}, 404`) for errors.",
+        "passed": true
+    }
+]

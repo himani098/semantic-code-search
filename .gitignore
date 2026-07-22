@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+
+# Environment Variables
+.env
+
+# ChromaDB
+backend/chroma_db/
+
+# SQLite
+backend/*.db
+
+# Logs
+backend/query_logs.txt
+
+# File Hashes
+backend/file_hashes.json
+
+# Temporary cloned repositories
+repo_*/
+
+# Node
+frontend/node_modules/
+
+# Build
+frontend/dist/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Sample repository used for testing
+sample_repo/

@@ -1,0 +1,22 @@
+[
+  {
+    "question": "How does Flask handle routing?",
+    "expected": "routing"
+  },
+  {
+    "question": "What does url_for do?",
+    "expected": "url_for"
+  },
+  {
+    "question": "How are templates rendered?",
+    "expected": "template"
+  },
+  {
+    "question": "How are requests parsed?",
+    "expected": "request"
+  },
+  {
+    "question": "How are responses created?",
+    "expected": "response"
+  }
+]
