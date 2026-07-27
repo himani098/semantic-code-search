@@ -51,7 +51,7 @@ def index_repo(repo_url: str):
 
         print("STEP 2: Chunking...")
         chunks = chunk_repo(clone_path)
-        chunks = chunks[:20]
+        chunks = chunks[:500]
         print(f"✅ STEP 2 DONE - {len(chunks)} chunks")
 
         if not chunks:
