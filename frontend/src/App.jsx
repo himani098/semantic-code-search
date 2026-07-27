@@ -62,31 +62,82 @@ const sendFeedback = async (rating) => {
 };
 
   return (
-    <div style={{ maxWidth: 700, margin: "40px auto", fontFamily: "sans-serif" }}>
-      <h1>🔍 Semantic Code Search</h1>
+    <div
+      style={{
+        maxWidth: "850px",
+        margin: "40px auto",
+        padding: "30px",
+        fontFamily: "Arial, sans-serif",
+        backgroundColor: "#ffffff",
+        borderRadius: "12px",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+     }}
+    >
+      <h1 style={{ textAlign: "center", color: "#2563eb" }}>
+        🔍 Semantic Code Search using RAG & Gemini
+      </h1>
 
       <h3>1. Index a repo</h3>
       <input
-        style={{ width: "70%" }}
+        style={{
+          width: "75%",
+          padding: "10px",
+          borderRadius: "6px",
+          border: "1px solid #ccc",
+          fontSize: "15px",
+        }}
         placeholder="https://github.com/user/repo.git"
         value={repoUrl}
         onChange={(e) => setRepoUrl(e.target.value)}
       />
-      <button onClick={handleIndex} disabled={loading}>Index</button>
+      <button onClick={handleIndex} disabled={loading}
+      style={{
+        marginLeft: "10px",
+        padding: "10px 18px",
+        borderRadius: "6px",
+        border: "none",
+        backgroundColor: "#2563eb",
+        color: "white",
+        cursor: "pointer",
+        fontSize: "15px",
+      }}>Index</button>
       {indexed && <p>✅ Repo indexed!</p>}
 
       <h3>2. Ask a question</h3>
       <input
-        style={{ width: "70%" }}
+        style={{
+          width: "75%",
+          padding: "10px",
+          borderRadius: "6px",
+          border: "1px solid #ccc",
+          fontSize: "15px",
+        }}
         placeholder="How is user login handled?"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
       />
-      <button onClick={handleQuery} disabled={loading || !indexed}>
+      <button
+        onClick={handleQuery}
+        disabled={loading || !indexed}
+        style={{
+          marginLeft: "10px",
+          padding: "10px 18px",
+          borderRadius: "6px",
+          border: "none",
+          backgroundColor: "#16a34a",
+          color: "white",
+          cursor: "pointer",
+          fontSize: "15px",
+        }}
+>
   Ask
 </button>
 
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <p style={{ color: "#2563eb", fontWeight: "bold" }}>
+        🔄 Please wait...
+      </p>
+     )}
 
       {answer && (
   <div style={{ marginTop: 20 }}>
@@ -95,13 +146,33 @@ const sendFeedback = async (rating) => {
     <p>{answer}</p>
 
     <div style={{ marginTop: 20 }}>
-      <button onClick={() => sendFeedback(1)}>
+      <button
+        onClick={() => sendFeedback(1)}
+        style={{
+          padding: "10px 18px",
+          borderRadius: "6px",
+          border: "none",
+          backgroundColor: "#22c55e",
+          color: "white",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+      >
         👍 Helpful
       </button>
 
       <button
         onClick={() => sendFeedback(0)}
-        style={{ marginLeft: 10 }}
+        style={{
+          marginLeft: 10,
+          padding: "10px 18px",
+          borderRadius: "6px",
+          border: "none",
+          backgroundColor: "#ef4444",
+          color: "white",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
       >
         👎 Not Helpful
       </button>
