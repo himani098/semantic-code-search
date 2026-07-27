@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from app.indexer import index_repo
@@ -47,7 +48,7 @@ def query_endpoint(req: QueryRequest):
 
         chunks = [
             {
-                "file": m["file"],
+                "file": "/".join(m["file"].split("/")[-2:]),
                 "name": m["name"],
                 "start_line": m["start_line"],
                 "code": d,
