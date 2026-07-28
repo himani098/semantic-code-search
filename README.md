@@ -10,7 +10,6 @@ An AI-powered Semantic Code Search application that enables users to index GitHu
 - 🤖 AI-powered answers using Google Gemini
 - 📂 GitHub repository indexing
 - 🧠 ChromaDB vector database for semantic retrieval
-- ⚡ Query caching for improved performance
 - 📝 Query logging
 - 👍 User feedback collection
 - 📊 Automated evaluation framework
@@ -19,6 +18,16 @@ An AI-powered Semantic Code Search application that enables users to index GitHu
 - 💻 Interactive React frontend
 
 ---
+
+## Architecture
+
+1. Clone GitHub repository
+2. Parse Python files
+3. Chunk functions and classes
+4. Generate embeddings using Sentence Transformers
+5. Store embeddings in ChromaDB
+6. Retrieve relevant code using semantic search
+7. Generate answers using Google Gemini
 
 ## Tech Stack
 
@@ -63,6 +72,11 @@ semantic-code-search/
 
 ## Installation
 
+## Deployment
+
+- **Frontend:** Vercel
+- **Backend:** Railway
+
 ### Backend
 
 ```bash
@@ -91,18 +105,47 @@ npm run dev
 
 ---
 
+## Screenshots
+
+### Home Page
+
+![Home](screenshots/home.png)
+
+### Repository Indexed
+
+![Repository Indexed](screenshots/repository-indexed.png)
+
+### AI Response
+
+![AI Response](screenshots/ai-response.png)
+
+### Source Files
+
+![Source Files](screenshots/source-files.png)
+
+## Live Demo
+
+Frontend: https://semantic-code-search-black.vercel.app
+
+Backend: https://semantic-code-search-production-d7e1.up.railway.app
+
 ## Future Improvements
 
-- User Authentication
 - Multi-language code support
-- True incremental vector updates
-- Multi-repository search
-- Enhanced evaluation metrics
+- Support for multiple repositories
+- Incremental indexing
+- User authentication
+- Improved retrieval accuracy
+- Advanced analytics dashboard
 
 ---
 
 ## Author
 
-**Himani**
+**Himani Jangid**
 
 B.Tech – Artificial Intelligence & Data Science
+
+## License
+
+This project is developed for educational purposes.

@@ -5,9 +5,11 @@ __pycache__/
 
 # Virtual Environment
 venv/
+backend/venv/
 
 # Environment Variables
 .env
+**/.env
 
 # ChromaDB
 backend/chroma_db/
