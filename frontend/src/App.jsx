@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { FaGithub } from "react-icons/fa";
+import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,188 +14,161 @@ function App() {
   const [indexed, setIndexed] = useState(false);
 
   const handleIndex = async () => {
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    await axios.post(`${API_URL}/index`, {
-      repo_url: repoUrl,
-    });
+      await axios.post(`${API_URL}/index`, {
+        repo_url: repoUrl,
+      });
 
-    setIndexed(true);
-  } catch (err) {
-    console.error(err);
-    alert("Failed to index repository.");
-  } finally {
-    setLoading(false);
-  }
-};
+      setIndexed(true);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to index repository.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleQuery = async () => {
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await axios.post(`${API_URL}/query`, {
-      question,
-    });
+      const res = await axios.post(`${API_URL}/query`, {
+        question,
+      });
 
-    setAnswer(res.data.answer);
-    setSources(res.data.sources);
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong while asking the question.");
-  } finally {
-    setLoading(false);
-  }
-};
+      setAnswer(res.data.answer);
+      setSources(res.data.sources);
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong while asking the question.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-const sendFeedback = async (rating) => {
-  try {
-    await axios.post(`${API_URL}/feedback`, {
-      question: question,
-      answer: answer,
-      rating: rating,
-    });
+  const sendFeedback = async (rating) => {
+    try {
+      await axios.post(`${API_URL}/feedback`, {
+        question,
+        answer,
+        rating,
+      });
 
-    alert("Thank you for your feedback!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to save feedback.");
-  }
-};
+      alert("Thank you for your feedback!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save feedback.");
+    }
+  };
 
   return (
-    <div
-      style={{
-        maxWidth: "850px",
-        margin: "40px auto",
-        padding: "30px",
-        fontFamily: "Arial, sans-serif",
-        backgroundColor: "#ffffff",
-        borderRadius: "12px",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-     }}
-    >
-      <h1
-        style={{
-        textAlign: "center",
-        color: "#2563eb",
-        fontSize: "32px",
-        marginBottom: "30px",
-     }}
-   >
-        🔍 Semantic Code Search using RAG & Gemini
+    <div className="container">
+      <h1 className="title">
+        <FaGithub className="github-icon" />
+        Semantic Code Search
       </h1>
 
-      <h3>1. Index a repo</h3>
-      <input
-        style={{
-          width: "75%",
-          padding: "10px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          fontSize: "15px",
-        }}
-        placeholder="https://github.com/user/repo.git"
-        value={repoUrl}
-        onChange={(e) => setRepoUrl(e.target.value)}
-      />
-      <button onClick={handleIndex} disabled={loading}
-      style={{
-        marginLeft: "10px",
-        padding: "10px 18px",
-        borderRadius: "6px",
-        border: "none",
-        backgroundColor: "#2563eb",
-        color: "white",
-        cursor: "pointer",
-        fontSize: "15px",
-        width: "110px",
-        fontWeight: "bold",
-      }}>Index</button>
-      {indexed && <p>✅ Repo indexed!</p>}
+      <p className="subtitle">
+        Search and understand any GitHub repository using <strong>RAG + Gemini</strong>
+      </p>
 
-      <h3>2. Ask a question</h3>
-      <input
-        style={{
-          width: "75%",
-          padding: "10px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          fontSize: "15px",
-        }}
-        placeholder="How is user login handled?"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-      />
-      <button
-        onClick={handleQuery}
-        disabled={loading || !indexed}
-        style={{
-          marginLeft: "10px",
-          padding: "10px 18px",
-          borderRadius: "6px",
-          border: "none",
-          backgroundColor: "#16a34a",
-          color: "white",
-          cursor: "pointer",
-          fontSize: "15px",
-          width: "110px",
-          fontWeight: "bold",
-        }}
->
-  Ask
-</button>
+      <div className="section">
+        <h3>📂 Index Repository</h3>
+
+        <input
+          className="input"
+          type="text"
+          placeholder="https://github.com/user/repository.git"
+          value={repoUrl}
+          onChange={(e) => setRepoUrl(e.target.value)}
+        />
+
+        <button
+          className="button"
+          onClick={handleIndex}
+          disabled={loading}
+        >
+          {loading ? "Indexing..." : "Index Repository"}
+        </button>
+
+        {indexed && (
+          <p className="success">
+            ✅ Repository indexed successfully
+          </p>
+        )}
+      </div>
+
+      <div className="section">
+        <h3>💬 Ask AI</h3>
+
+        <input
+          className="input"
+          type="text"
+          placeholder="Example: How does authentication work?"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+
+        <button
+          className="button"
+          onClick={handleQuery}
+          disabled={!indexed || loading}
+        >
+          {loading ? "Thinking..." : "Ask Question"}
+        </button>
+      </div>
 
       {loading && (
-        <p style={{ color: "#2563eb", fontWeight: "bold" }}>
-        🔄 Please wait...
-      </p>
-     )}
+        <p className="loading">
+          ⏳ Processing your request...
+        </p>
+      )}
 
       {answer && (
-  <div style={{ marginTop: 20 }}>
-    <h3>Answer</h3>
+        <div className="answer-box">
+          <h3>🤖 AI Response</h3>
 
-    <p>{answer}</p>
+          <p>{answer}</p>
 
-    <div style={{ marginTop: 20 }}>
-      <button
-        onClick={() => sendFeedback(1)}
-        style={{
-          padding: "10px 18px",
-          borderRadius: "6px",
-          border: "none",
-          backgroundColor: "#22c55e",
-          color: "white",
-          cursor: "pointer",
-          fontSize: "14px",
-        }}
-      >
-        👍 Helpful
-      </button>
+          <div className="feedback">
+            <button
+              className="button"
+              onClick={() => sendFeedback(1)}
+            >
+              👍 Helpful
+            </button>
 
-      <button
-        onClick={() => sendFeedback(0)}
-        style={{
-          marginLeft: 10,
-          padding: "10px 18px",
-          borderRadius: "6px",
-          border: "none",
-          backgroundColor: "#ef4444",
-          color: "white",
-          cursor: "pointer",
-          fontSize: "14px",
-        }}
-      >
-        👎 Not Helpful
-      </button>
-    </div>
+            <button
+              className="button"
+              style={{ background: "#da3633", marginLeft: "10px" }}
+              onClick={() => sendFeedback(0)}
+            >
+              👎 Not Helpful
+            </button>
+          </div>
 
-    <h4>Sources</h4>
+          <h3 style={{ marginTop: "30px" }}>📄 Source Files</h3>
+
           {sources.map((s, i) => (
-            <pre key={i} style={{ background: "#f4f4f4", padding: 10 }}>
-              {s.file} :: {s.name}{"\n"}{s.code.slice(0, 200)}
-            </pre>
+            <div key={i} className="source-card">
+              <strong>{s.file}</strong>
+
+              <br />
+
+              <span>{s.name}</span>
+
+              <pre
+                style={{
+                  marginTop: "10px",
+                  whiteSpace: "pre-wrap",
+                  overflowX: "auto",
+                }}
+              >
+{s.code.slice(0, 200)}
+              </pre>
+            </div>
           ))}
         </div>
       )}
