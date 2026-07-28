@@ -73,7 +73,14 @@ const sendFeedback = async (rating) => {
         boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
      }}
     >
-      <h1 style={{ textAlign: "center", color: "#2563eb" }}>
+      <h1
+        style={{
+        textAlign: "center",
+        color: "#2563eb",
+        fontSize: "38px",
+        marginBottom: "30px",
+     }}
+   >
         🔍 Semantic Code Search using RAG & Gemini
       </h1>
 
@@ -100,6 +107,8 @@ const sendFeedback = async (rating) => {
         color: "white",
         cursor: "pointer",
         fontSize: "15px",
+        width: "110px",
+        fontWeight: "bold",
       }}>Index</button>
       {indexed && <p>✅ Repo indexed!</p>}
 
@@ -128,6 +137,8 @@ const sendFeedback = async (rating) => {
           color: "white",
           cursor: "pointer",
           fontSize: "15px",
+          width: "110px",
+          fontWeight: "bold",
         }}
 >
   Ask
