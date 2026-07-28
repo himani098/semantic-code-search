@@ -7,15 +7,7 @@ load_dotenv(override=True)
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-# Stores answers for repeated questions
-cache = {}
-
 def generate_answer(question, code_chunks):
-
-        # Check if we already answered this question
-    if question in cache:
-        print("Returning answer from cache...")
-        return cache[question]
     
     context = "\n\n---\n\n".join(
         f"File: {c['file']} (function/class: {c['name']}, line {c['start_line']})\n```python\n{c['code']}\n```"
@@ -50,9 +42,6 @@ QUESTION:
         print("===========================")
 
         answer = response.text
-
-# Save answer for future use
-        cache[question] = answer
 
         return answer
 
