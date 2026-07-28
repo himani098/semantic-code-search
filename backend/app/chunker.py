@@ -22,7 +22,7 @@ def chunk_python_file(filepath):
                 "name": node.name,
                 "type": type(node).__name__,
                 "code": code_text,
-                "file": filepath,
+                "file": os.path.relpath(filepath),
                 "start_line": node.lineno,
             })
     return chunks

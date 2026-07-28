@@ -40,14 +40,6 @@ def index_repo(repo_url: str):
 
         changed, new_hashes = repository_changed(clone_path)
 
-        # Skip indexing if nothing changed
-        if not changed:
-            print("✅ Repository unchanged. Skipping indexing.")
-
-            return {
-                "status": "success",
-                "message": "Repository already indexed. No changes detected."
-            }
 
         print("STEP 2: Chunking...")
         chunks = chunk_repo(clone_path)
