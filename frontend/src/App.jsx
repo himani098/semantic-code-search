@@ -77,7 +77,7 @@ const sendFeedback = async (rating) => {
         style={{
         textAlign: "center",
         color: "#2563eb",
-        fontSize: "38px",
+        fontSize: "32px",
         marginBottom: "30px",
      }}
    >
