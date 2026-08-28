@@ -149,3 +149,7 @@ B.Tech – Artificial Intelligence & Data Science
 ## License
 
 This project is developed for educational purposes.
+
+## Project Documentation
+
+📄 [View Project Report (PDF)](docs/Semantic_Code_Search_Project_Report.pdf)
